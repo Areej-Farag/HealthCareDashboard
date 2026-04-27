@@ -130,7 +130,7 @@ export default function CustomFormField<
               className="shad-input border-0"
               placeholder={placeholder}
               selected={field.value}
-              onChange={(date) => field.onChange(date)}
+              onChange={(date: Date) => field.onChange(date)}
               showTimeSelect={showTimeSelect ?? false}
               dateFormat={dateFormat ?? "MM/dd/yyyy"}
               autoComplete="off"
