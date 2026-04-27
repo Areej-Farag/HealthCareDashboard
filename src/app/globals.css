@@ -1,0 +1,443 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+/* Dark mode as class (matches your old config: darkMode: ["class"]) */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 142 76% 36%; /* Your green color */
+  --primary-foreground: 355.7 100% 97.3%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 142 76% 36%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 142 76% 36%;
+  --primary-foreground: 355.7 100% 97.3%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 142 76% 36%;
+}
+
+/* Connect variables to Tailwind v4 theme */
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Your existing dark colors */
+  --color-dark-200: #0d0f10;
+  --color-dark-300: #131619;
+  --color-dark-400: #1a1d21;
+  --color-dark-500: #363a3d;
+  --color-dark-600: #76828d;
+  --color-dark-700: #abb8c4;
+  --color-black-800: #0f1218;
+  --color-black-900: #0a0c10;
+  --color-light-200: #e8e9e9;
+}
+
+/* Body */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dark .react-phone-number-input__country-select {
+  background-color: #020817; /* نفس لون خلفية shadcn dark */
+  color: #ffffff;
+}
+
+.dark .react-phone-number-input__country-select option {
+  background-color: #020817;
+  color: #ffffff;
+}
+/* ========================================== HIDE SCROLLBAR */
+@utility remove-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ========================================== CUSTOM UTILITIES */
+
+@utility sidebar {
+  @apply remove-scrollbar w-full max-w-72 flex-col overflow-auto bg-black-800 px-7 py-10;
+}
+
+@utility left-sidebar {
+  @apply hidden lg:flex;
+}
+@utility right-sidebar {
+  @apply hidden xl:flex;
+}
+
+@utility clip-text {
+  @apply bg-clip-text text-transparent;
+}
+
+@utility bg-image {
+  @apply bg-black-900 bg-cover bg-no-repeat;
+}
+
+@utility header {
+  @apply text-32-bold md:text-36-bold;
+}
+@utility sub-header {
+  @apply text-18-bold md:text-24-bold;
+}
+
+@utility container {
+  @apply relative flex-1 overflow-y-auto px-[5%];
+}
+@utility sub-container {
+  @apply mx-auto flex size-full flex-col py-10;
+}
+
+@utility side-img {
+  @apply hidden h-full object-cover md:block;
+}
+@utility copyright {
+  @apply text-14-regular justify-items-end text-center text-dark-600 xl:text-left;
+}
+
+/* Success */
+@utility success-img {
+  @apply m-auto flex flex-1 flex-col items-center justify-between gap-10 py-10;
+}
+@utility request-details {
+  @apply flex w-full flex-col items-center gap-8 border-y-2 border-dark-400 py-8 md:w-fit md:flex-row;
+}
+
+/* Admin */
+@utility admin-header {
+  @apply sticky top-3 z-20 mx-3 flex items-center justify-between rounded-2xl bg-dark-200 px-[5%] py-5 shadow-lg xl:px-12;
+}
+@utility admin-main {
+  @apply flex flex-col items-center space-y-6 px-[5%] pb-12 xl:space-y-12 xl:px-12;
+}
+@utility admin-stat {
+  @apply flex w-full flex-col justify-between gap-5 sm:flex-row xl:gap-10;
+}
+
+/* Form */
+@utility radio-group {
+  @apply flex h-full flex-1 items-center gap-2 rounded-md border border-dashed border-dark-500 bg-dark-400 p-3;
+}
+@utility checkbox-label {
+  @apply cursor-pointer text-sm font-medium text-dark-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
+}
+
+/* File Upload */
+@utility file-upload {
+  @apply text-12-regular flex cursor-pointer flex-col items-center justify-center gap-3 rounded-md border border-dashed border-dark-500 bg-dark-400 p-5;
+}
+@utility file-upload_label {
+  @apply flex flex-col justify-center gap-2 text-center text-dark-600;
+}
+
+/* Stat Card */
+@utility stat-card {
+  @apply flex flex-1 flex-col gap-6 rounded-2xl bg-cover p-6 shadow-lg;
+}
+
+/* Status Badge */
+@utility status-badge {
+  @apply flex w-fit items-center gap-2 rounded-full px-4 py-2;
+}
+
+/* Data Table */
+@utility data-table {
+  @apply z-10 w-full overflow-hidden rounded-lg border border-dark-400 shadow-lg;
+}
+@utility table-actions {
+  @apply flex w-full items-center justify-between space-x-2 p-4;
+}
+
+/* Alignments */
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+
+/* ========================================== TYPOGRAPHY */
+@utility text-36-bold {
+  @apply text-[36px] leading-[40px] font-bold;
+}
+@utility text-24-bold {
+  @apply text-[24px] leading-[28px] font-bold;
+}
+@utility text-32-bold {
+  @apply text-[32px] leading-[36px] font-bold;
+}
+@utility text-18-bold {
+  @apply text-[18px] leading-[24px] font-bold;
+}
+@utility text-16-semibold {
+  @apply text-[16px] leading-[20px] font-semibold;
+}
+@utility text-16-regular {
+  @apply text-[16px] leading-[20px] font-normal;
+}
+@utility text-14-medium {
+  @apply text-[14px] leading-[18px] font-medium;
+}
+@utility text-14-regular {
+  @apply text-[14px] leading-[18px] font-normal;
+}
+@utility text-12-regular {
+  @apply text-[12px] leading-[16px] font-normal;
+}
+@utility text-12-semibold {
+  @apply text-[12px] leading-[16px] font-semibold;
+}
+
+/* ========================================== SHADCN OVERRIDES */
+.shad-primary-btn {
+  @apply bg-green-500 text-white;
+}
+.shad-danger-btn {
+  @apply bg-red-700 text-white;
+}
+.shad-gray-btn {
+  @apply border border-dark-500 cursor-pointer bg-dark-400 text-white;
+}
+
+.shad-input-label {
+  @apply text-14-medium text-dark-700;
+}
+
+.shad-input,
+.shad-input-icon {
+  @apply bg-dark-400 placeholder:text-dark-600 border-dark-500 h-11 focus-visible:ring-0 focus-visible:ring-offset-0;
+}
+
+.shad-textArea {
+  @apply bg-dark-400 placeholder:text-dark-600 border-dark-500 focus-visible:ring-0 focus-visible:ring-offset-0;
+}
+
+.shad-combobox-item {
+  @apply data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50;
+}
+.shad-combobox-trigger {
+  @apply h-11;
+}
+
+.shad-select-trigger {
+  @apply bg-dark-400 placeholder:text-dark-600 border-dark-500 h-11 focus:ring-0 focus:ring-offset-0;
+}
+.shad-select-content {
+  @apply bg-dark-400 border-dark-500;
+}
+
+.shad-dialog {
+  @apply bg-dark-400 border-dark-500;
+}
+
+.shad-dialog button,
+.shad-sheet-content button {
+  @apply focus:ring-0 focus:ring-offset-0 focus-visible:border-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0;
+}
+
+.shad-error {
+  @apply text-red-400;
+}
+.shad-table {
+  @apply rounded-lg overflow-hidden;
+}
+.shad-table-row-header {
+  @apply border-b border-dark-400 text-light-200 hover:bg-transparent;
+}
+.shad-table-row {
+  @apply border-b border-dark-400 text-light-200;
+}
+
+.shad-otp {
+  @apply w-full flex justify-between;
+}
+.shad-otp-slot {
+  @apply text-36-bold justify-center flex border border-dark-500 rounded-lg size-12 mx-1;
+}
+
+.shad-alert-dialog {
+  @apply space-y-5 bg-dark-400 border-dark-500 outline-none;
+}
+
+/* ========================================== REACT PHONE & DATE PICKER */
+.input-phone {
+  @apply mt-2 h-11 rounded-md px-3 text-sm border bg-dark-400 placeholder:text-dark-600 border-dark-500;
+}
+
+.PhoneInputInput {
+  outline: none;
+  margin-left: 4px;
+  background: #1a1d21;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.PhoneInputInput::placeholder {
+  color: #abb8c4;
+}
+
+.date-picker {
+  @apply overflow-hidden border-transparent w-full placeholder:text-dark-600 h-11 text-14-medium rounded-md px-3 outline-none;
+}
+
+.react-datepicker-wrapper.date-picker {
+  display: flex;
+  align-items: center;
+}
+
+/* React Datepicker overrides */
+.react-datepicker,
+.react-datepicker__time,
+.react-datepicker__header,
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker-time__header {
+  background-color: #1a1d21 !important;
+  border-color: #363a3d !important;
+  color: #abb8c4 !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker-time__header {
+  color: #ffffff !important;
+}
+
+.react-datepicker__triangle {
+  fill: #1a1d21 !important;
+  color: #1a1d21 !important;
+  stroke: #1a1d21 !important;
+}
+
+.react-datepicker__time-list-item:hover {
+  background-color: #363a3d !important;
+}
+
+.react-datepicker__input-container input {
+  background-color: #1a1d21 !important;
+  width: 100%;
+  outline: none;
+}
+
+.react-datepicker__day--selected {
+  background-color: #24ae7c !important;
+  color: #ffffff !important;
+  border-radius: 4px;
+}
+
+.react-datepicker__time-list-item--selected {
+  background-color: #24ae7c !important;
+}
+
+.react-datepicker__time-container {
+  border-left: 1px solid #363a3d !important;
+}
+
+.react-datepicker__time-list-item {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* ========================================== ANIMATIONS (from your old config) */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+.animate-caret-blink {
+  animation: caret-blink 1.25s ease-out infinite;
+}
